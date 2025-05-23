@@ -5,55 +5,24 @@ body {
     font-family: sans-serif;
 }
 
-.intro-section {
-    height: 100vh;
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
 }
 
-.intro-text h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5em;
+#scroll-container {
+    height: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-.intro-text p {
-    font-size: 1.2rem;
-    opacity: 0.8;
+#scroll-container::-webkit-scrollbar {
+    display: none;
 }
 
-.scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    height: 30px;
-    width: 30px;
-    border: 2px solid white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: bounce 2s infinite;
-}
-
-.scroll-indicator span {
-    display: block;
-    width: 6px;
-    height: 6px;
-    background-color: white;
-    border-radius: 50%;
-    animation: blink 1.5s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(10px); }
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
+html {
+    scroll-behavior: smooth;
 }
