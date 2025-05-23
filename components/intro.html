@@ -1,64 +1,237 @@
 <section class="intro-section">
-    <div class="intro-text">
-        <h1>Bienvenue sur mon site</h1>
-        <p>Veuillez allumer la lumière</p>
-    </div>
-    <div class="scroll-indicator">
-        <span></span>
-    </div>
+  <div id="stars"></div>
+  <canvas id="shooting-stars"></canvas>
+  <div id="moon"></div>
 
-    <style>
-        .intro-section {
-            height: 100vh;
-            background-color: black;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-        }
+  <div class="intro-text">
+    <h1 class="fade-in-title">Bienvenue sur mon site</h1>
+    <p class="fade-in-paragraph">Explore un univers étoilé et élégant.</p>
+  </div>
 
-        .intro-text h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5em;
-        }
+  <div class="scroll-indicator"><span></span></div>
 
-        .intro-text p {
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
+  <style>
+    /* STYLE DE LA SECTION */
+    .intro-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-color: black;
+      overflow-x: hidden;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+      z-index: 0;
+    }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            height: 30px;
-            width: 30px;
-            border: 2px solid white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: bounce 2s infinite;
-        }
+    /* ÉTOILES FIXES */
+    #stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.6;
+      filter: drop-shadow(0 0 2px white);
+      animation-name: twinkle;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
 
-        .scroll-indicator span {
-            display: block;
-            width: 6px;
-            height: 6px;
-            background-color: white;
-            border-radius: 50%;
-            animation: blink 1.5s infinite;
-        }
+    /* LUNE */
+    #moon {
+      position: fixed;
+      width: 80px; height: 80px;
+      background: radial-gradient(circle at 30% 30%, #f0e9d2, #c9b99f 70%);
+      border-radius: 50%;
+      box-shadow: 0 0 80px 30px rgba(240, 233, 210, 0.2);
+      z-index: 2;
+      filter: drop-shadow(0 0 5px #f0e9d2);
+      left: -100px;
+      top: 150px;
+      pointer-events: none;
+    }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-        }
+    /* ÉTOILES FILANTES (CANVAS) */
+    #shooting-stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
 
-        @keyframes blink {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-    </style>
+    /* TEXTE INTRO */
+    .fade-in-title {
+      font-size: 2.8rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 2s ease forwards 0.5s;
+      margin: 0;
+      z-index: 3;
+      position: relative;
+    }
+    .fade-in-paragraph {
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 2s ease forwards 1.2s;
+      margin-top: 0.3em;
+      z-index: 3;
+      position: relative;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* INDICATEUR SCROLL */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      width: 30px;
+      height: 30px;
+      border: 2px solid white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: bounce 2s infinite;
+      cursor: default;
+      z-index: 3;
+    }
+    .scroll-indicator span {
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      animation: blink 1.5s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+  </style>
+
+  <script>
+    // CRÉER ÉTOILES FIXES
+    function createStars() {
+      const container = document.getElementById('stars');
+      const count = 60;
+      for(let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        const size = Math.random() * 2 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.top = `${Math.random() * 100}vh`;
+        star.style.left = `${Math.random() * 100}vw`;
+        star.style.animationDuration = `${2 + Math.random() * 3}s`;
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        container.appendChild(star);
+      }
+    }
+
+    // LUNE QUI SE DÉPLACE EN ARC LORS DU SCROLL
+    function moveMoon() {
+      const moon = document.getElementById('moon');
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      const startX = -100;
+      const endX = window.innerWidth;
+      const bottomY = window.innerHeight / 2 + 100;
+      const peakY = 80;
+
+      window.addEventListener('scroll', () => {
+        const t = Math.min(window.scrollY / maxScroll, 1);
+        const x = startX + (endX - startX) * t;
+        const y = bottomY - 4 * (bottomY - peakY) * Math.pow(t - 0.5, 2);
+        moon.style.left = `${x}px`;
+        moon.style.top = `${y}px`;
+      });
+    }
+
+    // ÉTOILES FILANTES EN CANVAS
+    function animateShootingStars() {
+      const canvas = document.getElementById('shooting-stars');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      function ShootingStar() {
+        this.reset = function() {
+          this.x = Math.random() * canvas.width;
+          this.y = 0;
+          this.len = Math.random() * 80 + 10;
+          this.speed = Math.random() * 10 + 6;
+          this.angle = Math.PI / 3;
+        };
+        this.reset();
+
+        this.update = function() {
+          this.x += this.speed * Math.cos(this.angle);
+          this.y += this.speed * Math.sin(this.angle);
+          if (this.y > canvas.height || this.x > canvas.width) this.reset();
+        };
+
+        this.draw = function() {
+          ctx.beginPath();
+          ctx.moveTo(this.x, this.y);
+          ctx.lineTo(this.x - this.len * Math.cos(this.angle), this.y - this.len * Math.sin(this.angle));
+          ctx.strokeStyle = 'white';
+          ctx.lineWidth = 2;
+          ctx.shadowColor = 'white';
+          ctx.shadowBlur = 5;
+          ctx.stroke();
+        };
+      }
+
+      const stars = Array.from({ length: 2 }, () => new ShootingStar());
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        stars.forEach(star => {
+          star.update();
+          star.draw();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    }
+
+    // INIT AU DOM READY
+    document.addEventListener('DOMContentLoaded', () => {
+      createStars();
+      moveMoon();
+      animateShootingStars();
+    });
+  </script>
 </section>
