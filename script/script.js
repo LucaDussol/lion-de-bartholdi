@@ -92,26 +92,6 @@ function animateShootingStars() {
     });
 }
 
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    createStars();
-    animateShootingStars();
-
-    loadComponent("intro", "components/intro.html");
-    loadComponent("light-reveal-1", "components/light-reveal-1.html");
-    loadComponent("light-reveal-2", "components/light-reveal-2.html");
-    loadComponent("light-reveal-3", "components/light-reveal-3.html");
-    loadComponent("light-reveal-4", "components/light-reveal-4.html");
-    loadComponent("light-reveal-5", "components/light-reveal-5.html");
-    loadComponent("light-reveal-6", "components/light-reveal-6.html");
-
-    initAllSpotlightSections();
-});
-
-
-
-
 function initAllSpotlightSections() {
     setTimeout(() => {
         const sections = document.querySelectorAll('.light-reveal-section');
@@ -171,6 +151,26 @@ function initAllSpotlightSections() {
         });
     }, 200);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    initAllSpotlightSections();
+    createStars();
+    animateShootingStars();
+    loadComponent("intro", "components/intro.html");
+    loadComponent("light-reveal-1", "components/light-reveal-1.html");
+    loadComponent("light-reveal-2", "components/light-reveal-2.html");
+    loadComponent("light-reveal-3", "components/light-reveal-3.html");
+    loadComponent("light-reveal-4", "components/light-reveal-4.html");
+    loadComponent("light-reveal-5", "components/light-reveal-5.html");
+    loadComponent("light-reveal-6", "components/light-reveal-6.html");
+
+
+});
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const audio = document.getElementById("background-music");
 
