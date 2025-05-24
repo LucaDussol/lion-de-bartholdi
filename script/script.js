@@ -134,7 +134,7 @@ function initAllSpotlightSections() {
 
                 if (isRevealed) {
                     overlay.style.background = "rgba(0, 0, 0, 0)";
-                    lampIcon.src = "../assets/lamp-on.svg";
+                    lampIcon.src = "./assets/lamp-on.svg";
                     lampIcon.classList.add("glow");
                     if (textOverlay) textOverlay.classList.add("visible");
                 } else {
@@ -143,7 +143,7 @@ function initAllSpotlightSections() {
             transparent 0%,
             rgba(0, 0, 0, 0.95) 100%
           )`;
-                    lampIcon.src = "../assets/lamp-off.svg";
+                    lampIcon.src = "./assets/lamp-off.svg";
                     lampIcon.classList.remove("glow");
                     if (textOverlay) textOverlay.classList.remove("visible");
                 }
