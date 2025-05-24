@@ -142,9 +142,15 @@ function initAllSpotlightSections() {
                 overlay.style.setProperty('--x', `-1000px`);
                 overlay.style.setProperty('--y', `-1000px`);
             });
+            const clickSound = section.querySelector('.lamp-sound');
 
             svgTrigger.addEventListener("click", () => {
                 isRevealed = !isRevealed;
+
+                if (clickSound) {
+                    clickSound.currentTime = 0;
+                    clickSound.play().catch(() => {});
+                }
 
                 if (isRevealed) {
                     overlay.style.background = "rgba(0, 0, 0, 0)";
@@ -165,6 +171,16 @@ function initAllSpotlightSections() {
         });
     }, 200);
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById("background-music");
+
+    document.addEventListener("click", () => {
+        if (audio.paused) {
+            audio.play().catch(e => console.warn("Lecture refusée :", e));
+        }
+    }, { once: true });
+});
+
 
 
 
