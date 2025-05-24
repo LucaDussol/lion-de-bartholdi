@@ -1,0 +1,143 @@
+<section class="light-reveal-section right-layout">
+    <div class="spotlight-container">
+        <div class="top-gradient"></div>
+        <div class="bottom-gradient"></div>
+        <div class="spotlight-overlay"></div>
+        <img src="../images/fontaine_bartholdi.jpg" alt="Image immersive" />
+
+        <div class="svg-trigger" id="reveal-trigger">
+            <img class="lamp-icon" src="../assets/lamp-off.svg" alt="Lampe" />
+        </div>
+        <div class="text-overlay">
+            <h2>Fontaine Bartholdi</h2>
+            <p>
+                La fontaine Bartholdi se situe place des Terreaux, dans le centre de la ville française de Lyon (1er arrondissement) Elle a été réalisée par le sculpteur Frédéric Auguste Bartholdi et inaugurée en 1892 sous son appellation originelle de «Char triomphal de la Garonne» alors que son nom officiel est «Les fleuves et les sources allant à l'océan».
+            </p>
+        </div>
+        <audio class="lamp-sound" src="../assets/light-switch-156813.mp3"></audio>
+
+
+
+    </div>
+
+    <style>
+        .light-reveal-section {
+            width: 100%;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spotlight-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .spotlight-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: auto;
+            display: block;
+        }
+
+
+
+        .spotlight-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(
+                    circle 350px at var(--x, 50%) var(--y, 50%),
+                    transparent 0%,
+                    rgba(0, 0, 0, 0.95) 100%
+            );
+            transition: background 0.05s;
+            z-index: 2;
+        }
+
+        .top-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100px;
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .svg-trigger {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 5;
+            cursor: pointer;
+        }
+
+        .svg-trigger img {
+            width: 120px;
+            height: auto;
+            display: block;
+            transition: filter 0.3s ease;
+        }
+
+        .glow {
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 5px white) drop-shadow(0 0 10px white);
+            }
+            to {
+                filter: drop-shadow(0 0 20px white) drop-shadow(0 0 35px white);
+            }
+        }
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            right: auto;
+            transform: translateY(-50%) translateX(-20px);
+            width: 500px;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            z-index: 4;
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .text-overlay.visible {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .text-overlay h2 {
+            margin-top: 0;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .text-overlay p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+
+
+
+    </style>
+</section>

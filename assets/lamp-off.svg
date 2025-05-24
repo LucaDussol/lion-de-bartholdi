@@ -1,0 +1,11 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg" stroke="white" fill="none" stroke-width="2">
+    <path d="M100,0
+           C130,30 70,50 100,70
+           C130,90 70,110 100,130
+           C130,150 70,170 100,190
+           C110,200 110,220 100,220
+           C95,220 95,230 100,230
+           L100,240" />
+    <circle cx="100" cy="260" r="20" />
+    <path d="M90,260 Q100,270 110,260" />
+</svg>
