@@ -42,7 +42,7 @@ html {
 .right-layout .text-overlay {
     left: 20%;
     right: auto;
-    transform: translateY(-50%) translateX(-20px); /* inverse direction entrée */
+    transform: translateY(-50%) translateX(-20px);
 }
 .right-layout .text-overlay.visible {
     transform: translateY(-50%) translateX(0);
@@ -52,7 +52,7 @@ html {
     top: 0;
     left: 0;
     width: 100%;
-    height: 180px; /* plus haut */
+    height: 180px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.5), transparent);
     z-index: 3;
     pointer-events: none;
@@ -72,4 +72,19 @@ html {
     padding-top: 60px;
     padding-bottom: 60px;
 }
+.intro-logo {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.intro-logo img {
+    height: 150px;
+    width: auto;
+    opacity: 0.95;
+}
+
 
