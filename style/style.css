@@ -68,3 +68,8 @@ html {
     pointer-events: none;
 }
 
+.light-reveal-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
